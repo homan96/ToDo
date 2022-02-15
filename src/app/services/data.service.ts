@@ -14,12 +14,14 @@ export class DataService {
   getTasks(): Observable<Task[]> {
     return new Observable<Task[]>((observable) => {
       observable.next(this.tasks);
+      observable.complete();
     });
   }
 
   getTask(id: number) {
     return new Observable<Task>((observable) => {
-      observable.next(this.tasks.find(task => task.id == id));
+      observable.next(this.tasks.find(task => task.id === id));
+      observable.complete();
     });
   }
 
@@ -33,7 +35,7 @@ export class DataService {
   }
 
   editTask(task: Task) {
-    let updateTask = this.tasks.find(t => t.id == task.id);
+    let updateTask = this.tasks.find(t => t.id === task.id);
     if(updateTask) {
       updateTask.name = task.name;
       updateTask.description = task.description;

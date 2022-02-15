@@ -8,10 +8,8 @@ import { DataService } from '../services/data.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private dataService: DataService) { }
+  constructor() { }
 
-  ngOnInit(): void {
-    this.dataService.getTasks().subscribe(tasks => console.log(tasks));
-  }
+  ngOnInit(): void {}
 
 }

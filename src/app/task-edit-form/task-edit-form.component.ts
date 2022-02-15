@@ -11,7 +11,7 @@ import { DataService } from '../services/data.service';
 })
 export class TaskEditFormComponent implements OnInit, OnDestroy {
 
-  task$: any = {};
+  task: any = {};
 
   subscription: Subscription | undefined;
 
@@ -20,7 +20,7 @@ export class TaskEditFormComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     let id = this.activatedRoute.snapshot.paramMap.get('id');
     if(id) {
-      this.subscription = this.dataService.getTask(Number(id)).subscribe(task => this.task$ = new Task(task?.id, task?.name, task?.description));
+      this.subscription = this.dataService.getTask(Number(id)).subscribe(task => this.task = new Task(task?.id, task?.name, task?.description));
     }
   }
 
@@ -30,7 +30,7 @@ export class TaskEditFormComponent implements OnInit, OnDestroy {
   }
 
   onEdit() {
-    this.dataService.editTask(this.task$);
+    this.dataService.editTask(this.task);
     this.router.navigateByUrl('/todo');
   }
 }
